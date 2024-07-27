@@ -48,9 +48,3 @@ body {
   /* cria padding em torno do botão de rolagem*/
   height: 4px;
 }
-
-@media (max-width: 900px) {
-  .App {
-    display: none;
-  }
-}
