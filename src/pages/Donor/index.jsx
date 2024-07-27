@@ -232,7 +232,7 @@ function DonorList() {
       updateDonorList();
     } catch (error) {
       console.error('Erro ao adicionar doação:', error);
-      console.log(`${donationUrl}${donorToDonate._id}`);
+      // console.log(`${donationUrl}${donorToDonate._id}`);
     }
     setLoading(false);
   };

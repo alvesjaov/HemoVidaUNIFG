@@ -1,6 +1,5 @@
 import PropTypes from 'prop-types';
-import {IoIosArrowDropleft, IoIosArrowDropright  } from 'react-icons/io';
-
+import { IoIosArrowDropleft, IoIosArrowDropright } from 'react-icons/io';
 import './styles.css';
 
 function Pagination({ totalPages, currentPage, onPageChange }) {
@@ -19,7 +18,7 @@ function Pagination({ totalPages, currentPage, onPageChange }) {
   };
 
   const handlePageClick = (pageNumber) => {
-    if (pageNumber <= totalPages) {
+    if (pageNumber !== currentPage) {
       onPageChange(pageNumber);
     }
   };
@@ -29,9 +28,15 @@ function Pagination({ totalPages, currentPage, onPageChange }) {
 
   return (
     <div className="pagination-container">
-      <button className="pagination-prev" onClick={handlePrev} disabled={currentPage === 1}><IoIosArrowDropleft/></button>
-      {startPage > 1 && <button className="pagination-number" onClick={() => handlePageClick(1)}>1</button>}
-      {startPage > 2 && <span className="pagination-ellipsis">...</span>}
+      <button className="pagination-prev" onClick={handlePrev} disabled={currentPage === 1}>
+        <IoIosArrowDropleft />
+      </button>
+      {startPage > 1 && (
+        <>
+          <button className="pagination-number" onClick={() => handlePageClick(1)}>1</button>
+          {startPage > 2 && <span className="pagination-ellipsis">...</span>}
+        </>
+      )}
       {Array.from({ length: endPage - startPage + 1 }, (_, i) => startPage + i).map(pageNumber => (
         <button
           key={pageNumber}
@@ -41,15 +46,20 @@ function Pagination({ totalPages, currentPage, onPageChange }) {
           {pageNumber}
         </button>
       ))}
-      {endPage < totalPages - 1 && <span className="pagination-ellipsis">...</span>}
-      {endPage < totalPages && <button className="pagination-number" onClick={() => handlePageClick(totalPages)}>{totalPages}</button>}
-      <button className="pagination-next" onClick={handleNext} disabled={currentPage === totalPages}><IoIosArrowDropright/></button>
+      {endPage < totalPages && (
+        <>
+          {endPage < totalPages - 1 && <span className="pagination-ellipsis">...</span>}
+          <button className="pagination-number" onClick={() => handlePageClick(totalPages)}>{totalPages}</button>
+        </>
+      )}
+      <button className="pagination-next" onClick={handleNext} disabled={currentPage === totalPages}>
+        <IoIosArrowDropright />
+      </button>
     </div>
   );
 }
 
-
-Pagination.propTypes ={
+Pagination.propTypes = {
   totalPages: PropTypes.number.isRequired,
   currentPage: PropTypes.number.isRequired,
   onPageChange: PropTypes.func.isRequired,

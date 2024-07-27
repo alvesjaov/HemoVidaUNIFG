@@ -170,7 +170,7 @@ function RegisterDonor({ onClose, updateDonorList }) {
 
             if (error.response && error.response.status === 401) {
                 setLoading(false);
-                console.log('Usuário não autorizado!');
+                console.error('Usuário não autorizado!');
                 return;
             }
 

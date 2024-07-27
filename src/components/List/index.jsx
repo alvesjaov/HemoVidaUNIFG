@@ -4,6 +4,7 @@ import { TbDropletPlus, TbEdit, TbTrash, TbPlus } from "react-icons/tb";
 import Pagination from '../Pagination';
 
 import "./styles.css";
+
 function List({ users, onClick, onDelete, onAddDonation, onAddExames }) {
   const [currentPage, setCurrentPage] = useState(1);
 
@@ -24,6 +25,7 @@ function List({ users, onClick, onDelete, onAddDonation, onAddExames }) {
 
     return `${day < 10 ? '0' + day : day}/${month < 10 ? '0' + month : month}/${year}`;
   };
+
   return (
     <div className='ListContainer'>
       {visibleUsers.map((user) => (
@@ -60,7 +62,7 @@ function List({ users, onClick, onDelete, onAddDonation, onAddExames }) {
                 }}
                 tabIndex={0}
                 className='ExamIcon'
-                title='Adicionar Doação'
+                title='Adicionar Exame'
               />}
             {user.donations ? (null) : (
               <TbEdit
@@ -86,8 +88,6 @@ function List({ users, onClick, onDelete, onAddDonation, onAddExames }) {
               className='DeleteIcon'
               title='Excluir'
             />
-
-
           </div>
         </div>
       ))}
@@ -104,7 +104,7 @@ List.propTypes = {
   onClick: PropTypes.func.isRequired,
   onDelete: PropTypes.func.isRequired,
   onAddDonation: PropTypes.func.isRequired,
-  onAddExames: PropTypes.func.isRequired,
+  onAddExames: PropTypes.func,
 };
 
 export default List;
